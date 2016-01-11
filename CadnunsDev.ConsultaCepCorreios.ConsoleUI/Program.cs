@@ -24,7 +24,6 @@ namespace CadnunsDev.ConsultaCepCorreios.ConsoleUI
                 Logradouro logradouro = webCliente.GerarLogradouro(cepDesejado);
                 Console.WriteLine("Cep.: {0}, End.:{1} Bairro: {2} - {3}/{4}", logradouro.CEP, logradouro.Endereco, logradouro.BairroOuDistrito, logradouro.Localidade, logradouro.UF);
             }
-            
 
             Console.Read();
         }

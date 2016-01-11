@@ -23,26 +23,9 @@ namespace CadnunsDev.ConsultaCepCorreios.ConsoleUI.WebCliente
 
         public Logradouro GerarLogradouro(string cepDesejado, string tipoCEP = "ALL", string semelhante = "N")
         {
-            
-            var request = (HttpWebRequest)WebRequest.Create(_linkPage);
-
-            //var postData = "thing1=hello";
-            //postData += "&thing2=world";
             var postData = string.Format("relaxation={0}&tipoCEP={1}&semelhante={2}", cepDesejado, tipoCEP, semelhante);
-            var data = Encoding.ASCII.GetBytes(postData);
-
-            request.Method = "POST";
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.ContentLength = data.Length;
-
-            using (var stream = request.GetRequestStream())
-            {
-                stream.Write(data, 0, data.Length);
-            }
-
-            var response = (HttpWebResponse)request.GetResponse();
-
-            var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
+            
+            var responseString = GetHtml(postData);
 
             var pattern = @"<table class=""tmptabela"">(.*?)</table>";
             var regex = new Regex(pattern);
@@ -65,6 +48,43 @@ namespace CadnunsDev.ConsultaCepCorreios.ConsoleUI.WebCliente
             logradouro.Localidade = cidade.Split('/')[0].HtmlDecode();
             logradouro.UF = cidade.Split('/')[1].HtmlDecode();
             return logradouro;
+        }
+
+        public string BuscarCep(string uf, string localidade, string tipo, string logradouro, string numero)
+        {
+            var postData = string.Format("UF={0}&Localidade={1}&Tipo={2}&Logradouro={3}&Numero={4}", uf, localidade, tipo, logradouro, numero);
+
+            var responseString = GetHtml(postData);
+
+            var pattern = @"<table class=""tmptabela"">(.*?)</table>";
+            var regex = new Regex(pattern);
+            var match = regex.Match(responseString);
+
+            return "";
+        }
+
+        private string GetHtml(string postData)
+        {
+            var request = (HttpWebRequest)WebRequest.Create(_linkPage);
+
+            //var postData = "thing1=hello";
+            //postData += "&thing2=world";
+            
+            var data = Encoding.ASCII.GetBytes(postData);
+
+            request.Method = "POST";
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = data.Length;
+
+            using (var stream = request.GetRequestStream())
+            {
+                stream.Write(data, 0, data.Length);
+            }
+
+            var response = (HttpWebResponse)request.GetResponse();
+
+            return new StreamReader(response.GetResponseStream()).ReadToEnd();
+
         }
     }
 }
