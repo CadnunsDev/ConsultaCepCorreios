@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{756F50DB-E2CA-444C-88C7-ED695877AA1E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", "{B68BA97D-EBE1-40A6-A12A-AB786B1E1879}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadnunsDev.ConsultaCepCorreios.ConsoleUI", "CadnunsDev.ConsultaCepCorreios.ConsoleUI\CadnunsDev.ConsultaCepCorreios.ConsoleUI.csproj", "{90D16DC6-9DB2-41BF-9544-3DC1BE26143E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CadnunsDev.ConsultaCepCorreios.Domain", "CadnunsDev.ConsultaCepCorreios.Domain\CadnunsDev.ConsultaCepCorreios.Domain.csproj", "{020CE582-2AA6-4640-A235-0744D6702EFF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90D16DC6-9DB2-41BF-9544-3DC1BE26143E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90D16DC6-9DB2-41BF-9544-3DC1BE26143E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90D16DC6-9DB2-41BF-9544-3DC1BE26143E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90D16DC6-9DB2-41BF-9544-3DC1BE26143E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{020CE582-2AA6-4640-A235-0744D6702EFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{020CE582-2AA6-4640-A235-0744D6702EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{020CE582-2AA6-4640-A235-0744D6702EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{020CE582-2AA6-4640-A235-0744D6702EFF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{90D16DC6-9DB2-41BF-9544-3DC1BE26143E} = {756F50DB-E2CA-444C-88C7-ED695877AA1E}
+		{020CE582-2AA6-4640-A235-0744D6702EFF} = {B68BA97D-EBE1-40A6-A12A-AB786B1E1879}
+	EndGlobalSection
+EndGlobal
