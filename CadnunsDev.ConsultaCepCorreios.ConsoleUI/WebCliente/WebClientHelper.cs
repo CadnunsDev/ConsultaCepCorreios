@@ -11,24 +11,24 @@ using System.Threading.Tasks;
 
 namespace CadnunsDev.ConsultaCepCorreios.ConsoleUI.WebCliente
 {
-    public class WebClientFunctions
+    public class WebClientHelper
     {
         private string _linkPage;
 
-        public WebClientFunctions(string linkPage)
+        public WebClientHelper(string linkPage)
         {
             // TODO: Complete member initialization
             this._linkPage = linkPage;
         }
 
-        internal Logradouro GerarLogradouro(string relaxation, string tipoCEP, string semelhante)
+        public Logradouro GerarLogradouro(string cepDesejado, string tipoCEP = "ALL", string semelhante = "N")
         {
             
             var request = (HttpWebRequest)WebRequest.Create(_linkPage);
 
             //var postData = "thing1=hello";
             //postData += "&thing2=world";
-            var postData = string.Format("relaxation={0}&tipoCEP={1}&semelhante={2}", relaxation, tipoCEP, semelhante);
+            var postData = string.Format("relaxation={0}&tipoCEP={1}&semelhante={2}", cepDesejado, tipoCEP, semelhante);
             var data = Encoding.ASCII.GetBytes(postData);
 
             request.Method = "POST";
@@ -59,8 +59,8 @@ namespace CadnunsDev.ConsultaCepCorreios.ConsoleUI.WebCliente
             cidade = Regex.Replace(cidade, stripTagsPattern, string.Empty).Replace("&nbsp;", "");
 
             var logradouro = new Logradouro();
-            logradouro.CEP = relaxation;
-            logradouro.Localidade = rua.HtmlDecode();
+            logradouro.CEP = cepDesejado;
+            logradouro.Endereco = rua.HtmlDecode();
             logradouro.BairroOuDistrito = bairro.HtmlDecode();
             logradouro.Localidade = cidade.Split('/')[0].HtmlDecode();
             logradouro.UF = cidade.Split('/')[1].HtmlDecode();

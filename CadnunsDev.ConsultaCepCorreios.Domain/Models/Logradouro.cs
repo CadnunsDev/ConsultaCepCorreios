@@ -8,7 +8,7 @@ namespace CadnunsDev.ConsultaCepCorreios.Domain.Models
 {
     public class Logradouro
     {
-        public string Nome { get; set; }
+        public string Endereco { get; set; }
         public string BairroOuDistrito { get; set; }
         public string Localidade { get; set; }
         public string UF { get; set; }
