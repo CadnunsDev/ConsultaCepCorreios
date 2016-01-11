@@ -11,21 +11,29 @@ using System.Threading.Tasks;
 
 namespace CadnunsDev.ConsultaCepCorreios.ConsoleUI.WebCliente
 {
-    public class WebClientHelper
+    public class BuscadorCepCorreiosHelper
     {
         private string _linkPage;
+        private string _buscarCepPeloLogradouroLink;
+        private string _buscarLogradouroPeloCepLink;
 
-        public WebClientHelper(string linkPage)
+        public BuscadorCepCorreiosHelper(string linkPage)
         {
             // TODO: Complete member initialization
             this._linkPage = linkPage;
+        }
+
+        public BuscadorCepCorreiosHelper()
+        {
+            _buscarCepPeloLogradouroLink = "http://www.buscacep.correios.com.br/sistemas/buscacep/resultadoBuscaCep.cfm";
+            _buscarLogradouroPeloCepLink = "http://www.buscacep.correios.com.br/sistemas/buscacep/resultadoBuscaCepEndereco.cfm";
         }
 
         public Logradouro GerarLogradouro(string cepDesejado, string tipoCEP = "ALL", string semelhante = "N")
         {
             var postData = string.Format("relaxation={0}&tipoCEP={1}&semelhante={2}", cepDesejado, tipoCEP, semelhante);
             
-            var responseString = GetHtml(postData);
+            var responseString = GetHtml(postData, _buscarLogradouroPeloCepLink);
 
             var pattern = @"<table class=""tmptabela"">(.*?)</table>";
             var regex = new Regex(pattern);
@@ -54,7 +62,7 @@ namespace CadnunsDev.ConsultaCepCorreios.ConsoleUI.WebCliente
         {
             var postData = string.Format("UF={0}&Localidade={1}&Tipo={2}&Logradouro={3}&Numero={4}", uf, localidade, tipo, logradouro, numero);
 
-            var responseString = GetHtml(postData);
+            var responseString = GetHtml(postData, _buscarCepPeloLogradouroLink);
 
             var pattern = @"<table class=""tmptabela"">(.*?)</table>";
             var regex = new Regex(pattern);
@@ -63,9 +71,9 @@ namespace CadnunsDev.ConsultaCepCorreios.ConsoleUI.WebCliente
             return "";
         }
 
-        private string GetHtml(string postData)
+        private string GetHtml(string postData, string linkPage)
         {
-            var request = (HttpWebRequest)WebRequest.Create(_linkPage);
+            var request = (HttpWebRequest)WebRequest.Create(linkPage);
 
             //var postData = "thing1=hello";
             //postData += "&thing2=world";

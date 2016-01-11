@@ -13,7 +13,8 @@ namespace CadnunsDev.ConsultaCepCorreios.ConsoleUI
     {
         static void Main(string[] args)
         {
-            var webCliente = new WebClientHelper("http://www.buscacep.correios.com.br/sistemas/buscacep/resultadoBuscaCepEndereco.cfm");
+            
+            var webCliente = new BuscadorCepCorreiosHelper();
             var cepDesejado = "08130-050";
             Console.WriteLine("Digite o cep desejado");
 
